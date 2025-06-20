@@ -8,11 +8,11 @@ import { Customer } from './customer';
 })
 export class CustomerService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private _httpClient:HttpClient) { }
 
   private baseUrl:String = "/api/v1/customers"
   
-  // fetchAllCustomers():Observable<Customer[]>{
-  //   return this.httpClient.get<Customer[]>(`${this.baseUrl}`)
-  // }
+  fetchAllCustomers():Observable<Customer[]>{
+    return this._httpClient.get<Customer[]>(`${this.baseUrl}`)
+  }
 }

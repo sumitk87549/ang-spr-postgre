@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Customer } from '../customer';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ import { Customer } from '../customer';
 export class Home implements AfterViewInit{
   
   displayedColumns: string[] = ['Id', 'Name', 'Email', 'Address'];
+  customers:Customer[]=[];
   dataSource = new MatTableDataSource<Customer>();
 
   customer:Customer = {
@@ -23,7 +25,13 @@ export class Home implements AfterViewInit{
     address:''
   }
 
+  constructor(private customerService:CustomerService){}
+
   ngAfterViewInit(): void {
-    this.dataSource =new MatTableDataSource<Customer>();
+    this.customerService.fetchAllCustomers().subscribe((data) => {
+      this.customers = data;
+      this.dataSource =new MatTableDataSource<Customer>(data);
+    })
+    // this.dataSource =new MatTableDataSource<Customer>();
   }
 }
