@@ -15,14 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.customer.entity.Customer;
 import com.customer.service.CustService;
-import com.customer.service.CustServiceImpl;
+//import com.customer.service.CustServiceImpl;
 
 @CrossOrigin(maxAge = 3360)
 @RestController
 public class CustomerController {
+//
+//	@Autowired
+//	private CustServiceImpl custService;
 
 	@Autowired
-	private CustServiceImpl custService;
+	private CustService custService;
 	
 	@GetMapping("/api/v1/customers")
 	public ResponseEntity<List<Customer>> fetchAllCustomers() {
@@ -59,7 +62,7 @@ public class CustomerController {
 			deleteMsg = custService.deleteCustomer(custObj);
 		}
 		
-		System.out.println(deleteMsg);
+//		System.out.println(deleteMsg);
 		return ResponseEntity.ok(deleteMsg);
 	}
 	

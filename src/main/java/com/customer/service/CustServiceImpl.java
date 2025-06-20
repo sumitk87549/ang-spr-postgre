@@ -37,7 +37,7 @@ public class CustServiceImpl implements CustService{
 	@Override
 	public String deleteCustomer(Customer customer) {
 		customerRepository.delete(customer);
-		return "Customer is successfully deleted... --->>> "+ customer.toString() ;
+		return "Customer is successfully deleted... --->>> "+ customer.getName()+", "+ customer.getEmail()+", "+ customer.getAddress()+"...";
 	}
 
 }
