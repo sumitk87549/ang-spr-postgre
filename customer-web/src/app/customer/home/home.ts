@@ -16,7 +16,8 @@ export class Home implements AfterViewInit{
   
   displayedColumns: string[] = ['Id', 'Name', 'Email', 'Address'];
   customers:Customer[]=[];
-  dataSource = new MatTableDataSource<Customer>();
+  filteredCustomers:Customer[]=[];
+  dataSource =new MatTableDataSource<Customer>();
 
   customer:Customer = {
     id:0,
@@ -33,5 +34,14 @@ export class Home implements AfterViewInit{
       this.dataSource =new MatTableDataSource<Customer>(data);
     })
     // this.dataSource =new MatTableDataSource<Customer>();
+  }
+
+  filterCustomers(input: String) {
+    this.filteredCustomers = this.customers.filter(item => item.name.toLowerCase().includes(input.toLowerCase()) 
+    || item.email.toLowerCase().includes(input.toLowerCase())
+    || item.address.toLowerCase().includes(input.toLowerCase() 
+  ));
+    this.dataSource =new MatTableDataSource<Customer>(this.filteredCustomers);
+
   }
 }

@@ -2,7 +2,7 @@
     <br>
     <h3 style="color:blueviolet;text-align: center;"><strong>STACK WITH ANGULAR 18 MATERIAL + SPRING BOOT...</strong></h3>
     <mat-form-field>
-        <input matInput placeholder="Search customer" type="text">
+        <input matInput (input)="filterCustomers(filter.value)" placeholder="Search customer" type="text" #filter>
     </mat-form-field>
     <button mat-flat-button style="width: 100px;float: right; margin: 15px;">Add+</button>
     <br>
